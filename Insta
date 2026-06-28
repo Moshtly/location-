@@ -1,0 +1,703 @@
+
+html_content = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+        }
+
+        /* Left Side */
+        .left-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        .instagram-logo {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 48px;
+            align-self: flex-start;
+            margin-left: 10%;
+        }
+
+        .instagram-logo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .tagline {
+            font-size: 36px;
+            font-weight: 400;
+            line-height: 1.3;
+            text-align: left;
+            max-width: 400px;
+            margin-left: 10%;
+            margin-bottom: 40px;
+            align-self: flex-start;
+        }
+
+        .tagline .highlight {
+            color: #ff0050;
+            font-weight: 500;
+        }
+
+        .phone-mockup {
+            position: relative;
+            width: 320px;
+            height: 400px;
+            margin-left: 10%;
+            align-self: flex-start;
+        }
+
+        .phone-mockup img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Right Side */
+        .right-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            border-left: 1px solid #262626;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .login-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #f5f5f5;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 16px;
+            background-color: #1a1a1a;
+            border: 1px solid #363636;
+            border-radius: 12px;
+            color: #f5f5f5;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-field::placeholder {
+            color: #a8a8a8;
+        }
+
+        .input-field:focus {
+            border-color: #a8a8a8;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #0095f6;
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .login-btn:hover {
+            background-color: #1877f2;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .forgot-password a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background-color: #363636;
+        }
+
+        .divider-text {
+            padding: 0 16px;
+            color: #a8a8a8;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .facebook-login {
+            width: 100%;
+            padding: 12px;
+            background-color: transparent;
+            border: 1px solid #363636;
+            border-radius: 12px;
+            color: #f5f5f5;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            transition: background-color 0.2s;
+        }
+
+        .facebook-login:hover {
+            background-color: #1a1a1a;
+        }
+
+        .facebook-login svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .create-account {
+            width: 100%;
+            padding: 12px;
+            background-color: transparent;
+            border: 1px solid #363636;
+            border-radius: 12px;
+            color: #0095f6;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 32px;
+            transition: background-color 0.2s;
+        }
+
+        .create-account:hover {
+            background-color: #1a1a1a;
+        }
+
+        .meta-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            color: #a8a8a8;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .meta-logo svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid #262626;
+            padding: 24px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .footer-links a {
+            color: #a8a8a8;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: #a8a8a8;
+            font-size: 12px;
+        }
+
+        .language-selector {
+            background: transparent;
+            border: none;
+            color: #a8a8a8;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .language-selector:hover {
+            color: #f5f5f5;
+        }
+
+        /* Phone mockup styling with CSS */
+        .phone-container {
+            position: relative;
+            width: 280px;
+            height: 340px;
+            margin-left: 10%;
+            align-self: flex-start;
+        }
+
+        .phone-frame {
+            position: absolute;
+            width: 200px;
+            height: 380px;
+            background: #1a1a1a;
+            border-radius: 24px;
+            border: 3px solid #333;
+            overflow: hidden;
+            left: 20px;
+            top: -20px;
+            transform: rotate(-8deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .phone-frame-2 {
+            position: absolute;
+            width: 200px;
+            height: 380px;
+            background: #1a1a1a;
+            border-radius: 24px;
+            border: 3px solid #333;
+            overflow: hidden;
+            left: 60px;
+            top: 0;
+            transform: rotate(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+        }
+
+        .phone-screen-2 {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+        }
+
+        .story-bubble {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            padding: 2px;
+            margin-bottom: 8px;
+        }
+
+        .story-bubble-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #fff;
+        }
+
+        .phone-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .phone-post {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            gap: 8px;
+        }
+
+        .phone-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+        }
+
+        .phone-text {
+            flex: 1;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+        }
+
+        .phone-text-short {
+            width: 60%;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+
+        .floating-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .icon-heart {
+            background: #ff0050;
+            color: white;
+            left: -10px;
+            top: 80px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .icon-star {
+            background: #00d26a;
+            color: white;
+            right: 20px;
+            top: 40px;
+            animation: float 3s ease-in-out infinite 0.5s;
+        }
+
+        .icon-message {
+            background: #ff9500;
+            color: white;
+            left: 0;
+            bottom: 60px;
+            animation: float 3s ease-in-out infinite 1s;
+        }
+
+        .icon-emoji {
+            background: #fff;
+            left: 40px;
+            top: -10px;
+            animation: float 3s ease-in-out infinite 1.5s;
+            font-size: 16px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .left-side {
+                display: none;
+            }
+            .right-side {
+                border-left: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Left Side -->
+        <div class="left-side">
+            <div class="instagram-logo">
+                <svg viewBox="0 0 168 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="ig-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#f09433"/>
+                            <stop offset="25%" style="stop-color:#e6683c"/>
+                            <stop offset="50%" style="stop-color:#dc2743"/>
+                            <stop offset="75%" style="stop-color:#cc2366"/>
+                            <stop offset="100%" style="stop-color:#bc1888"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="168" height="168" rx="40" fill="url(#ig-gradient)"/>
+                    <rect x="28" y="28" width="112" height="112" rx="28" stroke="white" stroke-width="8" fill="none"/>
+                    <circle cx="84" cy="84" r="28" stroke="white" stroke-width="8" fill="none"/>
+                    <circle cx="120" cy="48" r="8" fill="white"/>
+                </svg>
+            </div>
+            <h1 class="tagline">
+                See everyday moments from<br>your <span class="highlight">close friends.</span>
+            </h1>
+            <div class="phone-container">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div style="display: flex; gap: 8px;">
+                            <div class="story-bubble"><div class="story-bubble-inner">A</div></div>
+                            <div class="story-bubble"><div class="story-bubble-inner">B</div></div>
+                            <div class="story-bubble"><div class="story-bubble-inner">C</div></div>
+                        </div>
+                        <div class="phone-content">
+                            <div class="phone-post">
+                                <div class="phone-avatar"></div>
+                                <div style="flex: 1;">
+                                    <div class="phone-text"></div>
+                                    <div class="phone-text-short"></div>
+                                </div>
+                            </div>
+                            <div class="phone-post">
+                                <div class="phone-avatar" style="background: linear-gradient(45deg, #48dbfb, #0abde3);"></div>
+                                <div style="flex: 1;">
+                                    <div class="phone-text"></div>
+                                    <div class="phone-text-short"></div>
+                                </div>
+                            </div>
+                            <div class="phone-post">
+                                <div class="phone-avatar" style="background: linear-gradient(45deg, #1dd1a1, #10ac84);"></div>
+                                <div style="flex: 1;">
+                                    <div class="phone-text"></div>
+                                    <div class="phone-text-short"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="phone-frame-2">
+                    <div class="phone-screen-2">
+                        <div style="display: flex; gap: 8px;">
+                            <div class="story-bubble"><div class="story-bubble-inner">D</div></div>
+                            <div class="story-bubble"><div class="story-bubble-inner">E</div></div>
+                        </div>
+                        <div class="phone-content">
+                            <div class="phone-post">
+                                <div class="phone-avatar" style="background: linear-gradient(45deg, #ff9ff3, #f368e0);"></div>
+                                <div style="flex: 1;">
+                                    <div class="phone-text"></div>
+                                    <div class="phone-text-short"></div>
+                                </div>
+                            </div>
+                            <div class="phone-post">
+                                <div class="phone-avatar" style="background: linear-gradient(45deg, #54a0ff, #2e86de);"></div>
+                                <div style="flex: 1;">
+                                    <div class="phone-text"></div>
+                                    <div class="phone-text-short"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-icon icon-heart">❤️</div>
+                <div class="floating-icon icon-star">⭐</div>
+                <div class="floating-icon icon-message">💬</div>
+                <div class="floating-icon icon-emoji">😍</div>
+            </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="right-side">
+            <div class="login-box">
+                <h2 class="login-title">Log into Instagram</h2>
+                
+                <div class="input-group">
+                    <input type="text" class="input-field" placeholder="Mobile number, username or email" id="username">
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" class="input-field" placeholder="Password" id="password">
+                </div>
+                
+                <button class="login-btn" id="loginBtn">Log in</button>
+                
+                <div class="forgot-password">
+                    <a href="#">Forgot password?</a>
+                </div>
+                
+                <div class="divider">
+                    <div class="divider-line"></div>
+                    <span class="divider-text">OR</span>
+                    <div class="divider-line"></div>
+                </div>
+                
+                <button class="facebook-login">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    Log in with Facebook
+                </button>
+                
+                <button class="create-account">Create new account</button>
+                
+                <div class="meta-logo">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                    Meta
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Meta</a>
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Jobs</a>
+            <a href="#">Help</a>
+            <a href="#">API</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Locations</a>
+            <a href="#">Popular</a>
+            <a href="#">Instagram Lite</a>
+            <a href="#">Meta AI</a>
+            <a href="#">Threads</a>
+            <a href="#">Contact Uploading & Non-Users</a>
+            <a href="#">Meta Verified</a>
+        </div>
+        <div class="footer-bottom">
+            <button class="language-selector">
+                English
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </button>
+            <span>© 2026 Instagram from Meta</span>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive functionality
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (!username || !password) {
+                // Shake animation for empty fields
+                const fields = document.querySelectorAll('.input-field');
+                fields.forEach(field => {
+                    if (!field.value) {
+                        field.style.borderColor = '#ed4956';
+                        field.style.animation = 'shake 0.5s';
+                        setTimeout(() => {
+                            field.style.borderColor = '#363636';
+                            field.style.animation = '';
+                        }, 2000);
+                    }
+                });
+            } else {
+                this.textContent = 'Logging in...';
+                this.style.opacity = '0.7';
+                setTimeout(() => {
+                    this.textContent = 'Log in';
+                    this.style.opacity = '1';
+                }, 2000);
+            }
+        });
+
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Input focus effects
+        document.querySelectorAll('.input-field').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '#a8a8a8';
+            });
+            input.addEventListener('blur', function() {
+                this.style.borderColor = '#363636';
+            });
+        });
+
+        // Button hover effects
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>'''
+
+with open('/mnt/agents/output/instagram_login.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("File saved successfully!")
+print(f"File size: {len(html_content)} characters")
